@@ -1,0 +1,31 @@
+# The main goal of the function is to remove the comments in start of a line and in middle
+# the function takes argument as string str1
+def comment_file(input_file,str1):
+    flag = 0
+    str2 = ""
+    str3 = ""
+    # to read every line in input file
+    for x in input_file:
+        # to read every element in the line                   
+        for i in x:
+            if( i!= '#' and flag == 0):
+                str1 = str1 + i
+            if( i == '#'):
+                str2 = str2 + i
+                flag = 1
+            if(flag == 1):
+                str3 = str3 + i
+                flag = 1
+        flag = 0
+        lexical_string = str1
+        print(lexical_string)
+        str1 = ""
+
+    return  
+            
+# main function
+input_file = open("F:\\python_scripts\\network Programming\\newserver.py",'r')
+str1 = ""
+lexical_string = ""
+comment_file(input_file,str1)
+print(lexical_string)

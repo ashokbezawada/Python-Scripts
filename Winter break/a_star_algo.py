@@ -1,0 +1,77 @@
+import sys
+# The maain goal of this function is to return the node with the shortest heuristic distance
+# The function takes argument as heuristic distance and a list
+def visit_the_vertex_with_shortest_fdistance(f_distance,lst):
+    node = lst[0]
+    minimum = f_distance[node]
+    for i in lst:
+        if(f_distance[i] <= minimum):
+            minimum = f_distance[i]
+            node = i
+    
+    return node
+
+# The main goal of this function is to find the shortest distance between one node and the other node 
+# The function takes argument as graph source and destination
+def a_star_algo(graph,source,destination):
+    length = len(graph)
+    heuristic_distance_h = {}
+    distance_from_source_g = {}
+    # The f distance is the sum of distance from source (g) and heuristic distance(h)
+    f_distance = {}
+    previous_node = {}
+    visited = []
+
+    lst_for_min_f_dist = []
+
+    # defining approxmate heuristic distances by myself
+    heuristic_distance_h[0] = 5
+    heuristic_distance_h[1] = 3
+    heuristic_distance_h[2] = 3
+    heuristic_distance_h[3] = 2
+    heuristic_distance_h[4] = 1
+    heuristic_distance_h[5] = 0
+    
+    for i in range(length):
+        distance_from_source_g[i] = sys.maxsize
+        previous_node[i] = "undefinded"
+        f_distance[i] = sys.maxsize
+        lst_for_min_f_dist.append(i)
+    
+    distance_from_source_g[source] = 0
+    previous_node[source] = "nil"
+    current = source
+    count = 0
+
+    while(current != destination):
+        for (neighbour,cost) in graph[current]:
+            if neighbour not in visited:
+                vertex_cost = distance_from_source_g[current] + cost
+                if(vertex_cost <= distance_from_source_g[neighbour]):
+                    distance_from_source_g[neighbour] = vertex_cost
+                new_cost = cost + heuristic_distance_h[neighbour]
+                if(new_cost <= f_distance[neighbour]):
+                    f_distance[neighbour] = new_cost
+                    previous_node[neighbour] = current
+        
+        lst_for_min_f_dist.remove(current)
+        current = visit_the_vertex_with_shortest_fdistance(f_distance,lst_for_min_f_dist)
+        visited.append(current)
+        count = count + 1
+    
+    print("The total no.of iterations done : ",count)
+    return distance_from_source_g
+
+
+
+example_graph = [[(1,10),(2,1)],
+                 [(0,10),(2,8),(4,1)],
+                 [(0,1),(1,8),(3,1)],
+                 [(2,1),(4,5),(5,2)],
+                 [(1,1),(3,5),(3,2)],
+                 [(3,2),(4,1)]]
+source = 0
+destination = 5
+#a_star_algo(example_graph,source,destination)
+final_distance = a_star_algo(example_graph,source,destination)
+print("The distance between" ,source, "and" ,destination, "is :" ,final_distance[destination])

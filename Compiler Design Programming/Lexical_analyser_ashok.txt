@@ -1,0 +1,58 @@
+# function print_tokens takes two arguments lex_string and lex_tokens
+# when the loop is executed, it prints every element in lex_tokens
+def print_tokens(lex_tokens):
+    print("All tokens in the lexical string")
+    print("---------------------------------")
+    for l in lex_tokens:
+        print(l)
+    print("----------------------------------")
+    return
+
+# the function lexical analyser takes three arguments
+# lex_string will have a python statement
+# lex_delimit is of list type containing all the delimiters
+# lex_tokens will get updated with all tokens in the lex_string
+def lexical_analyser(lex_string,lex_delimit,lex_tokens):
+    # Intalising str2 is empty and flag = 0
+    str2 = ""
+    flag = 0
+
+    # The loop checks for ele in lex_ string == deli in lex_delimit
+    # if ele != deli and flag!= 1, str2 is incremented with ele
+    # if ele == deli prints elements matches delimiter
+    # the characters present in str2 is incremented to lex_tokens and flag is set to 0
+    for ele in lex_string:
+        for deli in lex_delimit:
+            if (ele == deli):
+                print("Element matches with delimiter")
+                if(str2 != ""):
+                    lex_tokens.append(str2)
+                    str2 = ""
+                    flag = 1
+        if (flag != 1):
+            str2 = str2 + ele
+        else:
+            flag = 0
+    lex_tokens.append(str2)
+    return
+
+# importing file
+input_file = open("F:\\python_scripts\\hello.txt",'r')
+
+# the main goal of the function is to read every line from the file and print all the tokens
+# the argument of funct_file is file
+def funct_file(input_file):
+    for x in input_file:
+        lex_string = x
+        # Some delimiters
+        lex_delimit = [" ",",",":","+","-","!","*","&","%"]
+        # lex_tokens is empty list
+        lex_tokens = []
+        #function call for lexical_analyser
+        lexical_analyser(lex_string,lex_delimit,lex_tokens)
+        # function call for print_tokens
+        print_tokens(lex_tokens)
+    return
+funct_file(input_file)    
+
+

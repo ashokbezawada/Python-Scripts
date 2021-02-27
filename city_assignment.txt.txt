@@ -1,0 +1,2 @@
+(seattle,detroit,100)
+(detri, 100)

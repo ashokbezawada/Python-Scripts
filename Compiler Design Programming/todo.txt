@@ -1,0 +1,28 @@
+str = "ashok,sravya"
+
+delimiter = k
+token1 = asho
+token2 = ,sravya
+
+
+
+delimiter = ,
+token1 = ashok
+token2 = sravya
+
+delimiter = s
+token1 = a
+token2 = hok,
+token3 = ravya
+
+delimiter = a
+token1 = shok,sr
+token2 = vy 
+
+delimiter = '='
+
+token1 = "ashok,sravya"f
+
+1st argument = hello,ashok,sravya
+2nd argument = "space" , :
+o/p list = [hello,ashok,sravya]n

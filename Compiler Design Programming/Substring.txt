@@ -1,0 +1,39 @@
+string1 = "ASHok"
+string2 = "OK"
+
+# lower() converts capital letters into small case letters
+a = string1.lower()
+b = string2.lower()
+
+#checks whether ok is in string a
+if "ok" in a:
+    print("true")
+else:
+    print("false")
+
+
+
+string3 = "SRAVYA"
+string4 = "vya"
+
+c = string3.lower()
+d = string4.lower()
+
+#checks whether vya is in string c
+if "vya" in c:
+    print("true")
+else:
+    print("false")
+
+string5 = "rama2devi"
+string6 = "rama1"
+
+e = string5.lower()
+f = string6.lower()
+
+#checks whether rama1 is in string'e'
+if "rama1" in e:
+    print("true")
+else:
+    print("false")
+

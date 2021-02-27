@@ -1,0 +1,26 @@
+import sys
+#The main goal of the function is to print the maximum coins required for given denomination
+#The function takes argument as the required number which is x and returns the final list
+def minimum_denom(x):
+    coins  = [9,6,5,1]
+    y = x + 1
+    lst = [sys.maxsize]*y
+    lst[0] = 0
+    for i in coins:
+        lst[i] = 1
+    for i in range(y):
+        if(i != 0 and i!= 1 and i!=3 and i!=4):
+            no_of_coins = sys.maxsize
+            for coin in coins:
+                if(coin <= i):
+                    min = i - coin
+                    y = lst[min] + 1
+                    if(y < no_of_coins):
+                        no_of_coins = y
+                    lst[i] = no_of_coins
+    return lst
+
+#main 
+x = 11
+lst = minimum_denom(x)
+print("The minimum coins required for" ,x, "is",lst[x])
